@@ -1,0 +1,44 @@
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><c:out value="${titulo}"/> · Gestión de Citas</title>
+    <link rel="stylesheet" href="${ctx}/css/estilos.css">
+</head>
+<body>
+<c:if test="${not empty sessionScope.usuario}">
+    <header class="barra">
+        <div class="barra-in">
+            <a class="marca" href="${ctx}/dashboard">Gestión de Citas</a>
+            <input type="checkbox" id="menu-toggle" class="menu-toggle" aria-label="Mostrar menú">
+            <label for="menu-toggle" class="menu-btn" title="Menú">&#9776;</label>
+            <nav class="menu" aria-label="Navegación principal">
+                <a href="${ctx}/dashboard">Panel</a>
+                <c:if test="${sessionScope.usuario.admin or sessionScope.usuario.profesional}">
+                    <a href="${ctx}/pacientes">Pacientes</a>
+                </c:if>
+                <a href="${ctx}/profesionales">Profesionales</a>
+                <a href="${ctx}/citas">Citas</a>
+                <a href="${ctx}/seguimientos">Seguimiento</a>
+                <a href="${ctx}/historial">Historial</a>
+                <c:if test="${sessionScope.usuario.admin}">
+                    <a href="${ctx}/usuarios">Usuarios</a>
+                </c:if>
+                <form class="form-salir" action="${ctx}/logout" method="post">
+                    <input type="hidden" name="csrf" value="${sessionScope.csrf}">
+                    <span class="usuario"><c:out value="${sessionScope.usuario.nombre}"/> (<c:out value="${sessionScope.usuario.rol.etiqueta}"/>)</span>
+                    <button type="submit" class="btn btn-sec">Cerrar sesión</button>
+                </form>
+            </nav>
+        </div>
+    </header>
+</c:if>
+<main class="contenedor">
+    <c:if test="${not empty mensajeOk}">
+        <div class="alerta ok" role="status"><c:out value="${mensajeOk}"/></div>
+    </c:if>
+    <c:if test="${not empty mensajeError}">
+        <div class="alerta error" role="alert"><c:out value="${mensajeError}"/></div>
+    </c:if>

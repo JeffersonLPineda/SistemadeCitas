@@ -1,0 +1,15 @@
+# Base de datos PostgreSQL para desarrollo:  DB_PASSWORD=miClaveSegura docker compose up -d
+services:
+  db:
+    image: postgres:16
+    container_name: gestion-citas-db
+    environment:
+      POSTGRES_DB: gestion_citas
+      POSTGRES_USER: citas_app
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5433:5432"
+    volumes:
+      - citas_pgdata:/var/lib/postgresql/data
+volumes:
+  citas_pgdata: {}

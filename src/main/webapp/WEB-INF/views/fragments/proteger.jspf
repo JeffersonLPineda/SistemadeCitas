@@ -1,0 +1,4 @@
+<%-- Comprobacion adicional (ademas del filtro): toda vista protegida exige una sesion valida --%>
+<c:if test="${empty sessionScope.usuario}">
+    <c:redirect url="/login"/>
+</c:if>
