@@ -49,9 +49,7 @@ Copie el `.war` a la carpeta `webapps` de Tomcat 9 y entre a `http://localhost:8
 | Profesional | dra.lopez@citas.local / dr.perez@citas.local | Prof#2026 |
 | Paciente | maria.gomez@citas.local / juan.ramirez@citas.local | Pac#2026 |
 
-> En el código solo existen los **hashes** PBKDF2 de estas claves. Cambie las contraseñas desde *Usuarios* y **elimine esta tabla antes de la entrega final**.
 
-Los datos se guardan en **PostgreSQL** y se conservan al reiniciar el servidor. Los servicios y servlets solo conocen las interfaces DAO; hay una implementación JDBC (`dao/jdbc`) y otra en memoria.
 
 ## Estructura
 ```
